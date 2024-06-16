@@ -1,0 +1,6 @@
+<h2>Products</h2>
+<ul>
+  @for (item of products; track $index) {
+    <li>{{item.name}} - {{item.price}}</li>
+  }
+</ul>

@@ -1,0 +1,50 @@
+
+@if(isAuthenticated$ | async){
+  <button (click)="logout()">Logout</button>
+}
+@else {
+  <button (click)="login()">Login</button>
+}
+<button (click)="login()">Login</button>
+<button class="btn btn-secondary mr-1" (click)='reload()'>reload page</button>
+<button class="btn btn-danger mr-1" (click)='clearStorage()'>clear storage</button>
+
+
+<h2>Mavigation</h2>
+<ul class="nk-fmg-menu">
+  <li
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <a class="nk-fmg-menu-item" [routerLink]="['/']">
+      <em class="icon ni ni-home-alt"></em>
+      <span class="nk-fmg-menu-text">Home</span>
+    </a>
+  </li>
+
+  <li
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <a class="nk-fmg-menu-item" [routerLink]="['/login-oidc']">
+      <em class="icon ni ni-home-alt"></em>
+      <span class="nk-fmg-menu-text">ABC</span>
+    </a>
+  </li>
+  
+</ul>
+<router-outlet></router-outlet>
+
+<h2>Authentication info</h2>
+
+<table class="table table-bordered table-sm table-props">
+  <tr><th>IsDoneLoading</th><td><code id="isDoneLoading">{{isDoneLoading$ | async}}</code></td></tr>
+  <tr><th>IsAuthenticated</th><td><code id="isAuthenticated">{{isAuthenticated$ | async}}</code></td></tr>
+  <tr><th>HasValidToken</th><td><code id="hasValidToken">{{hasValidToken}}</code></td></tr>
+  
+  <!-- <tr><th>CanActivateProtectedRoutes</th><td><code id="canActivateProtectedRoutes">{{canActivateProtectedRoutes$ | async}}</code></td></tr> -->
+  <tr><th>IdentityClaims</th><td class="pre"><code id="identityClaims">{{identityClaims | json}}</code></td></tr>
+  <tr><th>RefreshToken</th><td><code class="break-all">{{refreshToken}}</code></td></tr>
+  <tr><th>AccessToken</th><td><code class="break-all">{{accessToken}}</code></td></tr>
+  <tr><th>IdToken</th><td><code class="break-all">{{idToken}}</code></td></tr>
+</table>
